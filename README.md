@@ -17,6 +17,7 @@
 - [Why LangExtract?](#why-langextract)
 - [Quick Start](#quick-start)
 - [Installation](#installation)
+- [FastAPI Service](#fastapi-service)
 - [API Key Setup for Cloud Models](#api-key-setup-for-cloud-models)
 - [Adding Custom Model Providers](#adding-custom-model-providers)
 - [Using OpenAI Models](#using-openai-models)
@@ -198,6 +199,24 @@ pip install -e ".[dev]"
 # For testing (includes pytest):
 pip install -e ".[test]"
 ```
+
+## FastAPI Service
+
+Run LangExtract as a REST API microservice. Supports OpenAI-compatible providers, `.env` auto-loading, and Docker deployment.
+
+- **Quick start (local)**:
+  ```bash
+  pip install -e ".[openai]" fastapi uvicorn python-dotenv
+  uvicorn api.main:app --host 0.0.0.0 --port 8000
+  ```
+- **Docker**:
+  ```bash
+  docker build -f Dockerfile.api -t langextract-api . \
+    --build-arg PIP_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple
+  docker run -p 8000:8000 --env-file .env langextract-api
+  ```
+- **Endpoints**: `GET /health`, `GET /`, `POST /extract`
+- Full API reference, environment variables, request validation rules, and examples (including knowledge graph extraction): [`docs/FASTAPI.md`](docs/FASTAPI.md).
 
 ### Docker
 

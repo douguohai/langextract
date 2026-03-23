@@ -173,3 +173,5 @@ benchmarks/benchmark_results
 benchmark_results/**/*.json
 benchmark_results/**/*.jsonl
 benchmark_results/**/*.html
+
+.env
